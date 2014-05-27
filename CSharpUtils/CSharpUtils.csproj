@@ -51,7 +51,6 @@
     <Compile Include="Attributes\CompareNotEqualAttribute.cs" />
     <Compile Include="Attributes\SpecificValuesAttribute.cs" />
     <Compile Include="Attributes\StringValueAttribute.cs" />
-    <Compile Include="Encryption\EncryptionManager.cs" />
     <Compile Include="Extensions\DataTypeExtensions.cs" />
     <Compile Include="Extensions\ModelMapper.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
