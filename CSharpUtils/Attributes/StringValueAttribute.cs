@@ -18,21 +18,9 @@ namespace CSharpUtils.Attributes
             Text = text;
         }
 
-		public StringValueAttribute(string text, object value)
-		{
-			Text = text;
-			Value = value;
-		}
-
         /// <summary>
         /// The text which belongs to this member.
         /// </summary>
 		public string Text { get; private set; }
-
-		/// <summary>
-		/// A corresponding value to associate with the string value of the field.
-		/// </summary>
-
-		public object Value { get; private set; }
     }
 }
