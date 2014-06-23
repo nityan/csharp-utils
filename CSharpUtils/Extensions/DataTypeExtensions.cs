@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace CSharpUtils.Extensions
 {
-
+	/// <summary>
+	/// A collection of datatype extension methods.
+	/// </summary>
 	public static class DataTypeExtensions
 	{
 

@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace CSharpUtils.Extensions
 {
+	/// <summary>
+	/// A collection of reflection extension methods.
+	/// </summary>
 	public static class ReflectionExtensions
 	{
 		/// <summary>
