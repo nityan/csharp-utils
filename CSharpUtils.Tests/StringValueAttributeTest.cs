@@ -28,7 +28,7 @@ namespace CSharpUtils.Tests
         {
             string expected = "asdf";
 
-            string actual = TestEnum.Test2.GetStringValue();
+			string actual = TestEnum.Test2.GetStringValue();
 
             Assert.AreNotEqual(expected, actual);
         }
