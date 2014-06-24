@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/**
+ * Created by Nityan Khanna on June 23 2014
+ */
+
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CSharpUtils.Attributes
 {

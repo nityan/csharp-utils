@@ -1,12 +1,12 @@
-﻿using CSharpUtils.Attributes;
-using CSharpUtils.Extensions;
+﻿/**
+ * Created by Nityan Khanna on June 23 2014
+ */
+
+using CSharpUtils.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpUtils.Tests
 {
