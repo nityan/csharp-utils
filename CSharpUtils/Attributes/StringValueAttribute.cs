@@ -11,7 +11,7 @@ namespace CSharpUtils.Attributes
     /// Defines an attribute containing a string representation of the member
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class StringValueAttribute : Attribute
+    public sealed class StringValueAttribute : Attribute
     {
         public StringValueAttribute(string text)
         {

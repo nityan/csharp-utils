@@ -12,7 +12,6 @@ namespace CSharpUtils.Tests
     [TestClass]
     public class StringValueAttributeTest
     {
-
         [TestMethod]
         public void StringValueAttributeTest_ShouldPass()
         {

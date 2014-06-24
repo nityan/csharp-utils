@@ -12,7 +12,7 @@ namespace CSharpUtils.Attributes
 	/// Provides a utility attribute that compares if two properties should not equal.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-	public class CompareNotEqualAttribute : ValidationAttribute
+	public sealed class CompareNotEqualAttribute : ValidationAttribute
 	{
 
 		/// <summary>

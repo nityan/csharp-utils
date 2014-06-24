@@ -51,6 +51,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AfterTodayAttribute.cs" />
+    <Compile Include="Attributes\BeforeTodayAttribute.cs" />
     <Compile Include="Attributes\CompareNotEqualAttribute.cs" />
     <Compile Include="Attributes\SpecificValuesAttribute.cs" />
     <Compile Include="Attributes\StringValueAttribute.cs" />

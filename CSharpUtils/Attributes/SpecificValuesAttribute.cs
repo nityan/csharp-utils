@@ -15,7 +15,7 @@ namespace CSharpUtils.Attributes
 	/// Represents a attribute to check if the current value is a valid value in a value set.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-	public class SpecificValueAttribute : ValidationAttribute
+	public sealed class SpecificValueAttribute : ValidationAttribute
 	{
 		/// <summary>
 		/// Initialzes a new instance of the SpecificValueAttribute class.
