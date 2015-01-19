@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>CSharpUtils</id>
+		<version>1.0.4</version>
+		<title>CSharp-Utils</title>
+		<authors>Nityan Khanna</authors>
+		<owners>Nityan Khanna</owners>
+		<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+		<projectUrl>https://github.com/nityan/csharp-utils</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>A collection of utility classes for the C# platform.</description>
+		<releaseNotes>Update Versions.</releaseNotes>
+		<copyright>Copyright 2015</copyright>
+		<tags>Csharp utility</tags>
+	</metadata>
+	<files>
+		<file src="bin\Debug\CSharpUtils.dll" target="lib\net45" />
+	</files>
+</package>

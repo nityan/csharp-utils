@@ -60,22 +60,7 @@
     <Compile Include="Extensions\ReflectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="NuGetPackage.ps1" />
-    <None Include="NuGetSetup.ps1" />
-    <None Include="NuGet.exe" />
-    <None Include="NuGet.config" />
-    <None Include="Package.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="tools\init.ps1" />
-    <None Include="tools\install.ps1" />
-    <None Include="tools\uninstall.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="content\" />
-    <Folder Include="lib\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
