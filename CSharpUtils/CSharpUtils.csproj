@@ -57,11 +57,16 @@
     <Compile Include="Attributes\SpecificValuesAttribute.cs" />
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Extensions\DataTypeExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <None Include="CSharpUtils.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />

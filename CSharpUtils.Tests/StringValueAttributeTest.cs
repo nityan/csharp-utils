@@ -1,38 +1,63 @@
-﻿using CSharpUtils.Attributes;
+﻿/*
+ * Copyright (c) 2017 Nityan Khanna
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ * User: Nityan
+ * Date: 2017-2-20
+ */
+using CSharpUtils.Attributes;
 using CSharpUtils.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CSharpUtils.Tests
 {
-    [TestClass]
-    public class StringValueAttributeTest
-    {
-        [TestMethod]
-        public void StringValueAttributeTest_ShouldPass()
-        {
-            string expected = "test1";
+	public enum TestEnum
+	{
+		[StringValue("test1")]
+		Test1,
 
-            string actual = TestEnum.Test1.GetStringValue();
+		[StringValue("test2")]
+		Test2
+	}
 
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void StringValueAttributeTest_ShouldFail()
-        {
-            string expected = "asdf";
+	[TestClass]
+	public class StringValueAttributeTest
+	{
+		[TestMethod]
+		public void StringValueAttributeTest_ShouldFail()
+		{
+			string expected = "asdf";
 
 			string actual = TestEnum.Test2.GetStringValue();
 
-            Assert.AreNotEqual(expected, actual);
-        }
-    }
+			Assert.AreNotEqual(expected, actual);
+		}
 
-    public enum TestEnum
-    {
-        [StringValue("test1")]
-        Test1,
-        [StringValue("test2")]
-        Test2
-    }
+		[TestMethod]
+		public void StringValueAttributeTest_ShouldPass()
+		{
+			string expected = "test1";
+
+			string actual = TestEnum.Test1.GetStringValue();
+
+			Assert.AreEqual(expected, actual);
+		}
+	}
 }
