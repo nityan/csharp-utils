@@ -1,0 +1,3 @@
+language: csharp
+solution: CSharpUtils.sln
+script: make build

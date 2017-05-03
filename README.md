@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nityan/csharp-utils.svg?branch=master)](https://travis-ci.org/nityan/csharp-utils)
+
 csharp-utils
 ============
 
