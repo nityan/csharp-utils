@@ -1,28 +1,21 @@
 ﻿/*
- * Copyright (c) 2017 Nityan Khanna
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * User: Nityan
- * Date: 2017-2-20
+ * Copyright 2015-2019 Nityan Khanna
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you 
+ * may not use this file except in compliance with the License. You may 
+ * obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the 
+ * License for the specific language governing permissions and limitations under 
+ * the License.
+ * 
+ * User: Nityan Khanna
+ * Date: 2019-3-17
  */
-
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -32,7 +25,7 @@ namespace CSharpUtils.Attributes
 	/// <summary>
 	/// Represents a attribute to check if the current value is a valid value in a value set.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 	public sealed class SpecificValueAttribute : ValidationAttribute
 	{
 		/// <summary>
@@ -41,19 +34,19 @@ namespace CSharpUtils.Attributes
 		/// <param name="values">The value(s) to validate against.</param>
 		public SpecificValueAttribute(params object[] values)
 		{
-			if (values == null)
-			{
-				throw new ArgumentNullException("The values parameter cannot be null");
-			}
-
-			Values = values;
+			Values = values ?? throw new ArgumentNullException(nameof(values), "Value cannot be null");
 		}
 
 		/// <summary>
 		/// The value(s) which are valid values for the property.
 		/// </summary>
-		public object[] Values { get; private set; }
+		public object[] Values { get; }
 
+		/// <summary>
+		/// Determines whether the specified value of the object is valid.
+		/// </summary>
+		/// <param name="value">The value of the object to validate.</param>
+		/// <returns>true if the specified value is valid; otherwise, false.</returns>
 		public override bool IsValid(object value)
 		{
 			return Values.Contains(value);

@@ -1,38 +1,35 @@
 ﻿/*
- * Copyright (c) 2017 Nityan Khanna
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * User: Nityan
- * Date: 2017-2-20
+ * Copyright 2015-2019 Nityan Khanna
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you 
+ * may not use this file except in compliance with the License. You may 
+ * obtain a copy of the License at 
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the 
+ * License for the specific language governing permissions and limitations under 
+ * the License.
+ * 
+ * User: Nityan Khanna
+ * Date: 2019-3-17
  */
-
 using System;
 
 namespace CSharpUtils.Attributes
 {
 	/// <summary>
-	/// Defines an attribute containing a string representation of the member
+	/// Represents an attribute containing a string representation of the member.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class StringValueAttribute : Attribute
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StringValueAttribute"/> class.
+		/// </summary>
+		/// <param name="text">The text.</param>
 		public StringValueAttribute(string text)
 		{
 			Text = text;
@@ -41,6 +38,6 @@ namespace CSharpUtils.Attributes
 		/// <summary>
 		/// The text which belongs to this member.
 		/// </summary>
-		public string Text { get; private set; }
+		public string Text { get; }
 	}
 }

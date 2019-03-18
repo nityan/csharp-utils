@@ -11,9 +11,5 @@ Usage
 To install CSharp-Utils, run the following command in the Package Manager Console
 
 ```
-Install-Package CSharpUtils
+Install-Package CSharpUtils -Version 2.0.0.0
 ```
-
-OR
-
-Use the Nuget Package Manager GUI built into Visual Studio.

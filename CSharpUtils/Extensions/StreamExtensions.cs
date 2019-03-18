@@ -18,49 +18,40 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpUtils.Extensions
 {
 	/// <summary>
-	/// Represents a collection of extension methods for the <see cref="List{T}"/> class.
+	/// Contains extensions for the <see cref="Stream"/> class.
 	/// </summary>
-	public static class ListExtensions
+	public static class StreamExtensions
 	{
 		/// <summary>
-		/// Replaces an element in a list.
+		/// Reads a given stream to the end as a string.
 		/// </summary>
-		/// <typeparam name="T">The type of the list.</typeparam>
-		/// <param name="source">The list to perform the replace operation on.</param>
-		/// <param name="match">The predicate match.</param>
-		/// <param name="value">The new value to be inserted into the list.</param>
-		/// <returns>Returns the list with the update value.</returns>
-		public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, Predicate<T> match, T value)
+		/// <param name="source">The source.</param>
+		/// <returns>Returns a string representing the result of the stream.</returns>
+		public static string ReadToEndAsString(this Stream source)
 		{
-			ThrowIfNullSource<T>(source);
+			ThrowIfNullSource(source);
 
-			var clonedList = source.ToList();
+			string result;
 
-			var index = source.ToList().FindIndex(match);
-
-			if (index == -1)
+			using (var streamReader = new StreamReader(source))
 			{
-				throw new Exception($"Item not found using predicate {match}");
+				result = streamReader.ReadToEnd();
 			}
 
-			clonedList[index] = value;
-
-			return clonedList.AsEnumerable();
+			return result;
 		}
 
 		/// <summary>
 		/// Throws an exception if the source is null.
 		/// </summary>
 		/// <param name="source">The source.</param>
-		private static void ThrowIfNullSource<T>(IEnumerable<T> source)
+		private static void ThrowIfNullSource(object source)
 		{
 			if (source == null)
 			{
