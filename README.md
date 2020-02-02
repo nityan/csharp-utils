@@ -5,6 +5,8 @@ csharp-utils
 
 A collection of utility classes for C#
 
+![.NET Core](https://github.com/nityan/csharp-utils/workflows/.NET%20Core/badge.svg)
+
 Usage
 ============
 
