@@ -30,8 +30,14 @@ namespace CSharpUtils.Attributes
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AfterTodayAttribute"/> class.
 		/// </summary>
-		public AfterTodayAttribute()
+		public AfterTodayAttribute(string errorMessage)
 		{
+			if (string.IsNullOrEmpty(errorMessage))
+			{
+				throw new ArgumentNullException(nameof(errorMessage), "Value cannot be null");
+			}
+
+			this.ErrorMessage = errorMessage;
 		}
 
 		/// <summary>
@@ -43,19 +49,12 @@ namespace CSharpUtils.Attributes
 		/// <exception cref="System.InvalidOperationException">Cannot validate non-DateTime property</exception>
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
-			if (value.GetType() != typeof(DateTime))
+			if (!(value is DateTime))
 			{
 				throw new InvalidOperationException("Cannot validate non-DateTime property");
 			}
 
-			if (string.IsNullOrEmpty(ErrorMessage))
-			{
-				ErrorMessage = "Invalid DateTime";
-			}
-
-			DateTime dateTimeProperty = (DateTime)value;
-
-			return dateTimeProperty > DateTime.Now ? ValidationResult.Success : new ValidationResult(ErrorMessage);
+			return (DateTime)value > DateTime.Now ? ValidationResult.Success : new ValidationResult(ErrorMessage);
 		}
 	}
 }

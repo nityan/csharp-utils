@@ -16,33 +16,27 @@
  * User: Nityan Khanna
  * Date: 2019-3-17
  */
+using CSharpUtils.Attributes;
 using System;
-using System.IO;
+using System.Reflection;
 
 namespace CSharpUtils.Extensions
 {
 	/// <summary>
-	/// Contains extensions for the <see cref="Stream"/> class.
+	/// Contains a collection of string value attribute enum extension methods.
 	/// </summary>
-	public static class StreamExtensions
+	public static class StringValueAttributeEnumExtensions
 	{
 		/// <summary>
-		/// Reads a given stream to the end as a string.
+		/// Gets a string value for an enum.
 		/// </summary>
-		/// <param name="source">The source.</param>
-		/// <returns>Returns a string representing the result of the stream.</returns>
-		public static string ReadToEndAsString(this Stream source)
+		/// <param name="source">The enum for which to return the string value for.</param>
+		/// <returns>Returns a string value for an enum.</returns>
+		public static string GetStringValue(this Enum source)
 		{
 			ThrowIfNullSource(source);
 
-			string result;
-
-			using (var streamReader = new StreamReader(source))
-			{
-				result = streamReader.ReadToEnd();
-			}
-
-			return result;
+			return source.GetType().GetField(source.ToString())?.GetCustomAttribute<StringValueAttribute>()?.Text;
 		}
 
 		/// <summary>

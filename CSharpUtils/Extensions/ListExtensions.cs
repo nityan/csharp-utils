@@ -19,9 +19,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpUtils.Extensions
 {
@@ -40,11 +37,13 @@ namespace CSharpUtils.Extensions
 		/// <returns>Returns the list with the update value.</returns>
 		public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, Predicate<T> match, T value)
 		{
-			ThrowIfNullSource<T>(source);
+			var enumerable = source as T[] ?? source.ToArray();
 
-			var clonedList = source.ToList();
+			ThrowIfNullSource<T>(enumerable);
 
-			var index = source.ToList().FindIndex(match);
+			var clonedList = enumerable.ToList();
+
+			var index = enumerable.ToList().FindIndex(match);
 
 			if (index == -1)
 			{

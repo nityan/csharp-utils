@@ -19,86 +19,102 @@
 using CSharpUtils.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CSharpUtils.Tests
 {
 	public class AfterTodayTest
 	{
-		[AfterToday]
+		[AfterToday("The date time value must be after today")]
 		public DateTime MustBeAfterToday { get; set; }
 	}
 
 	public class BeforeTodayTest
 	{
-		[BeforeToday]
+		[BeforeToday("The date time value must be before today")]
 		public DateTime MustBeBeforeToday { get; set; }
 	}
 
+	/// <summary>
+	/// Defines tests for the <see cref="AfterTodayAttribute"/> class and the <see cref="BeforeTodayAttribute"/> class.
+	/// </summary>
 	[TestClass]
 	public class DateTimeAttributeTest
 	{
+		private AfterTodayTest afterTodayTest;
+		private BeforeTodayTest beforeTodayTest;
+		private ValidationContext validationContext;
+
+		/// <summary>
+		/// Runs cleanup after each test.
+		/// </summary>
+		[TestCleanup]
+		public void Cleanup()
+		{
+			this.afterTodayTest = null;
+			this.beforeTodayTest = null;
+		}
+
+		/// <summary>
+		/// Runs initialization before each test.
+		/// </summary>
+		[TestInitialize]
+		public void Initialize()
+		{
+			this.afterTodayTest = new AfterTodayTest();
+			this.beforeTodayTest = new BeforeTodayTest();
+		}
+
 		[TestMethod]
 		public void AfterTodayAttributeTest_ShouldFail()
 		{
-			AfterTodayTest afterToday = new AfterTodayTest();
+			this.afterTodayTest.MustBeAfterToday = new DateTime(DateTime.Now.Year - 1, 10, 5);
 
-			afterToday.MustBeAfterToday = new DateTime(1993, 10, 5);
-
-			ValidationContext validationContext = new ValidationContext(afterToday)
+			this.validationContext = new ValidationContext(this.afterTodayTest)
 			{
-				MemberName = "MustBeAfterToday"
+				MemberName = nameof(AfterTodayTest.MustBeAfterToday)
 			};
 
-			Assert.IsFalse(Validator.TryValidateProperty(afterToday.MustBeAfterToday, validationContext, null));
+			Assert.IsFalse(Validator.TryValidateProperty(this.afterTodayTest.MustBeAfterToday, this.validationContext, null));
 		}
 
 		[TestMethod]
 		public void AfterTodayAttributeTest_ShouldPass()
 		{
-			AfterTodayTest afterToday = new AfterTodayTest();
+			this.afterTodayTest.MustBeAfterToday = new DateTime(DateTime.Now.Year + 1, 10, 5);
 
-			afterToday.MustBeAfterToday = new DateTime(2022, 10, 5);
-
-			ValidationContext validationContext = new ValidationContext(afterToday)
+			this.validationContext = new ValidationContext(this.afterTodayTest)
 			{
-				MemberName = "MustBeAfterToday"
+				MemberName = nameof(AfterTodayTest.MustBeAfterToday)
 			};
 
-			var results = new List<ValidationResult>();
-
-			Assert.IsTrue(Validator.TryValidateProperty(afterToday.MustBeAfterToday, validationContext, results));
+			Assert.IsTrue(Validator.TryValidateProperty(this.afterTodayTest.MustBeAfterToday, this.validationContext, null));
 		}
 
 		[TestMethod]
 		public void BeforeTodayAttributeTest_ShouldFail()
 		{
-			BeforeTodayTest beforeToday = new BeforeTodayTest();
+			this.beforeTodayTest.MustBeBeforeToday = new DateTime(DateTime.Now.Year + 1, 10, 5);
 
-			beforeToday.MustBeBeforeToday = new DateTime(2165, 10, 5);
-
-			ValidationContext validationContext = new ValidationContext(beforeToday)
+			this.validationContext = new ValidationContext(this.beforeTodayTest)
 			{
-				MemberName = "MustBeBeforeToday"
+				MemberName = nameof(BeforeTodayTest.MustBeBeforeToday)
 			};
 
-			Assert.IsFalse(Validator.TryValidateProperty(beforeToday.MustBeBeforeToday, validationContext, null));
+			Assert.IsFalse(Validator.TryValidateProperty(this.beforeTodayTest.MustBeBeforeToday, this.validationContext, null));
 		}
 
 		[TestMethod]
 		public void BeforeTodayAttributeTest_ShouldPass()
 		{
-			BeforeTodayTest beforeToday = new BeforeTodayTest();
+			this.beforeTodayTest.MustBeBeforeToday = new DateTime(DateTime.Now.Year - 1, 10, 5);
 
-			beforeToday.MustBeBeforeToday = new DateTime(1993, 10, 5);
-
-			ValidationContext validationContext = new ValidationContext(beforeToday)
+			this.validationContext = new ValidationContext(this.beforeTodayTest)
 			{
-				MemberName = "MustBeBeforeToday"
+				MemberName = nameof(BeforeTodayTest.MustBeBeforeToday)
 			};
 
-			Assert.IsTrue(Validator.TryValidateProperty(beforeToday.MustBeBeforeToday, validationContext, null));
+			Assert.IsTrue(Validator.TryValidateProperty(this.beforeTodayTest.MustBeBeforeToday, this.validationContext, null));
 		}
 	}
 }

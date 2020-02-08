@@ -72,7 +72,9 @@ namespace CSharpUtils.Extensions
 			ThrowIfNullSource(source);
 
 			var chars = new char[source.Length / sizeof(char)];
+
 			Buffer.BlockCopy(source, 0, chars, 0, source.Length);
+
 			return new string(chars);
 		}
 
@@ -86,21 +88,9 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			byte[] hashedByteArray;
+			algorithm = algorithm ?? new SHA256CryptoServiceProvider();
 
-			if (algorithm == null)
-			{
-				using (var sha256Hash = new SHA256CryptoServiceProvider())
-				{
-					hashedByteArray = sha256Hash.ComputeHash(source);
-				}
-			}
-			else
-			{
-				hashedByteArray = algorithm.ComputeHash(source);
-			}
-
-			return hashedByteArray;
+			return algorithm.ComputeHash(source);
 		}
 
 		/// <summary>
@@ -114,15 +104,8 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			if (algorithm == null)
-			{
-				algorithm = new SHA1CryptoServiceProvider();
-			}
-
-			if (encoding == null)
-			{
-				encoding = Encoding.UTF8;
-			}
+			algorithm = algorithm ?? new SHA256CryptoServiceProvider();
+			encoding = encoding ?? Encoding.UTF8;
 
 			return BitConverter.ToString(source.ToByteArray(encoding).Hash(algorithm));
 		}
@@ -160,7 +143,9 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			return encoding == null ? Encoding.UTF8.GetBytes(source) : encoding.GetBytes(source);
+			encoding = encoding ?? Encoding.UTF8;
+
+			return encoding.GetBytes(source);
 		}
 
 		/// <summary>

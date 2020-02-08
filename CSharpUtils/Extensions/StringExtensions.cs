@@ -17,10 +17,6 @@
  * Date: 2019-3-17
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpUtils.Extensions
 {
@@ -37,7 +33,6 @@ namespace CSharpUtils.Extensions
 		public static bool HasTrailingBackSlash(this string source)
 		{
 			ThrowIfNullSource(source);
-
 			return source.EndsWith("\\");
 		}
 
@@ -49,7 +44,6 @@ namespace CSharpUtils.Extensions
 		public static bool HasTrailingForwardSlash(this string source)
 		{
 			ThrowIfNullSource(source);
-
 			return source.EndsWith("/");
 		}
 
@@ -60,6 +54,7 @@ namespace CSharpUtils.Extensions
 		/// <returns>Returns the string without the trailing back slash.</returns>
 		public static string RemoveTrailingBackSlash(this string source)
 		{
+			ThrowIfNullSource(source);
 			return source.Substring(0, source.LastIndexOf('\\'));
 		}
 
@@ -70,6 +65,7 @@ namespace CSharpUtils.Extensions
 		/// <returns>Returns the string without the trailing forward slash.</returns>
 		public static string RemoveTrailingForwardSlash(this string source)
 		{
+			ThrowIfNullSource(source);
 			return source.Substring(0, source.LastIndexOf('/'));
 		}
 

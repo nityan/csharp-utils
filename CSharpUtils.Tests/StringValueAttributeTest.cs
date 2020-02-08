@@ -37,9 +37,9 @@ namespace CSharpUtils.Tests
 		[TestMethod]
 		public void StringValueAttributeTest_ShouldFail()
 		{
-			string expected = "asdf";
+			var expected = "asdf";
 
-			string actual = TestEnum.Test2.GetStringValue();
+			var actual = TestEnum.Test2.GetStringValue();
 
 			Assert.AreNotEqual(expected, actual);
 		}
@@ -47,9 +47,9 @@ namespace CSharpUtils.Tests
 		[TestMethod]
 		public void StringValueAttributeTest_ShouldPass()
 		{
-			string expected = "test1";
+			var expected = "test1";
 
-			string actual = TestEnum.Test1.GetStringValue();
+			var actual = TestEnum.Test1.GetStringValue();
 
 			Assert.AreEqual(expected, actual);
 		}

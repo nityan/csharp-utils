@@ -1,19 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0.0</Version>
+    <AssemblyVersion>2.0.0.1</AssemblyVersion>
+    <FileVersion>2.0.0.1</FileVersion>
+    <Version>2.0.0.1</Version>
     <Authors>nityan</Authors>
     <Description>Represents a collection of csharp utilities.</Description>
-    <Copyright>Copyright (c) 2019 Nityan Khanna</Copyright>
+    <Copyright>Copyright (c) 2020 Nityan Khanna</Copyright>
     <PackageLicenseUrl>https://github.com/nityan/csharp-utils/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/nityan/csharp-utils</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nityan/csharp-utils</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>csharp, utils, utility</PackageTags>
-    <PackageReleaseNotes>Upgraded to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Code cleanup for other methods and removed unnecessary methods and code blocks.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
