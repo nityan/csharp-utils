@@ -5,7 +5,7 @@ csharp-utils
 
 A collection of utility classes for C#
 
-![Build](https://github.com/nityan/csharp-utils/workflows/Build/badge.svg)
+![Build](https://github.com/nityan/csharp-utils/workflows/Build/badge.svg) ![Tests](https://github.com/nityan/csharp-utils/workflows/Tests/badge.svg)
 
 Usage
 ============
