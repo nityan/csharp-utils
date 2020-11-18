@@ -23,14 +23,28 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CSharpUtils.Tests
 {
+	/// <summary>
+	/// Represents an after today test class.
+	/// </summary>
 	public class AfterTodayTest
 	{
+		/// <summary>
+		/// Gets or sets the must be after today.
+		/// </summary>
+		/// <value>The must be after today.</value>
 		[AfterToday("The date time value must be after today")]
 		public DateTime MustBeAfterToday { get; set; }
 	}
 
+	/// <summary>
+	/// Represents a before today test class.
+	/// </summary>
 	public class BeforeTodayTest
 	{
+		/// <summary>
+		/// Gets or sets the must be before today.
+		/// </summary>
+		/// <value>The must be before today.</value>
 		[BeforeToday("The date time value must be before today")]
 		public DateTime MustBeBeforeToday { get; set; }
 	}
@@ -65,6 +79,9 @@ namespace CSharpUtils.Tests
 			this.beforeTodayTest = new BeforeTodayTest();
 		}
 
+		/// <summary>
+		/// Defines the test method AfterTodayAttributeTest_ShouldFail.
+		/// </summary>
 		[TestMethod]
 		public void AfterTodayAttributeTest_ShouldFail()
 		{
@@ -78,6 +95,9 @@ namespace CSharpUtils.Tests
 			Assert.IsFalse(Validator.TryValidateProperty(this.afterTodayTest.MustBeAfterToday, this.validationContext, null));
 		}
 
+		/// <summary>
+		/// Defines the test method AfterTodayAttributeTest_ShouldPass.
+		/// </summary>
 		[TestMethod]
 		public void AfterTodayAttributeTest_ShouldPass()
 		{
@@ -91,6 +111,9 @@ namespace CSharpUtils.Tests
 			Assert.IsTrue(Validator.TryValidateProperty(this.afterTodayTest.MustBeAfterToday, this.validationContext, null));
 		}
 
+		/// <summary>
+		/// Defines the test method BeforeTodayAttributeTest_ShouldFail.
+		/// </summary>
 		[TestMethod]
 		public void BeforeTodayAttributeTest_ShouldFail()
 		{
@@ -104,6 +127,9 @@ namespace CSharpUtils.Tests
 			Assert.IsFalse(Validator.TryValidateProperty(this.beforeTodayTest.MustBeBeforeToday, this.validationContext, null));
 		}
 
+		/// <summary>
+		/// Defines the test method BeforeTodayAttributeTest_ShouldPass.
+		/// </summary>
 		[TestMethod]
 		public void BeforeTodayAttributeTest_ShouldPass()
 		{

@@ -22,18 +22,33 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CSharpUtils.Tests
 {
+	/// <summary>
+	/// Represents a test enum.
+	/// </summary>
 	public enum TestEnum
 	{
+		/// <summary>
+		/// The test one value.
+		/// </summary>
 		[StringValue("test1")]
 		Test1,
 
+		/// <summary>
+		/// The test two value.
+		/// </summary>
 		[StringValue("test2")]
 		Test2
 	}
 
+	/// <summary>
+	/// Contains tests for the <see cref="StringValueAttribute"/> class and the <see cref="StringValueAttributeEnumExtensions"/> class.
+	/// </summary>
 	[TestClass]
 	public class StringValueAttributeTest
 	{
+		/// <summary>
+		/// Defines the test method StringValueAttributeTest_ShouldFail.
+		/// </summary>
 		[TestMethod]
 		public void StringValueAttributeTest_ShouldFail()
 		{
@@ -44,6 +59,9 @@ namespace CSharpUtils.Tests
 			Assert.AreNotEqual(expected, actual);
 		}
 
+		/// <summary>
+		/// Defines the test method StringValueAttributeTest_ShouldPass.
+		/// </summary>
 		[TestMethod]
 		public void StringValueAttributeTest_ShouldPass()
 		{
