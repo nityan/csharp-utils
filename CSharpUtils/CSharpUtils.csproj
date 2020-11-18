@@ -15,6 +15,7 @@
     <PackageTags>csharp, utils, utility</PackageTags>
     <PackageReleaseNotes>Code cleanup for other methods and removed unnecessary methods and code blocks.</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>

@@ -88,7 +88,7 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			algorithm = algorithm ?? new SHA256CryptoServiceProvider();
+			algorithm ??= new SHA256CryptoServiceProvider();
 
 			return algorithm.ComputeHash(source);
 		}
@@ -104,8 +104,8 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			algorithm = algorithm ?? new SHA256CryptoServiceProvider();
-			encoding = encoding ?? Encoding.UTF8;
+			algorithm ??= new SHA256CryptoServiceProvider();
+			encoding ??= Encoding.UTF8;
 
 			return BitConverter.ToString(source.ToByteArray(encoding).Hash(algorithm));
 		}
@@ -143,7 +143,7 @@ namespace CSharpUtils.Extensions
 		{
 			ThrowIfNullSource(source);
 
-			encoding = encoding ?? Encoding.UTF8;
+			encoding ??= Encoding.UTF8;
 
 			return encoding.GetBytes(source);
 		}
