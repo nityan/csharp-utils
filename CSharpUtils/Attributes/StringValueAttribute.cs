@@ -32,7 +32,7 @@ namespace CSharpUtils.Attributes
 		/// <param name="text">The text.</param>
 		public StringValueAttribute(string text)
 		{
-			Text = text;
+			this.Text = text;
 		}
 
 		/// <summary>
