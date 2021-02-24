@@ -28,16 +28,19 @@ namespace CSharpUtils.Extensions
 		/// <summary>
 		/// Gets the property value.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">The type of property.</typeparam>
 		/// <param name="source">The source.</param>
 		/// <param name="propertyName">Name of the property.</param>
-		/// <returns>T.</returns>
+		/// <returns>Returns the property value.</returns>
 		/// <exception cref="ArgumentNullException">propertyName - Value cannot be null</exception>
 		/// <exception cref="ArgumentException">Unable to find property: {propertyName} on object: {source}</exception>
 		/// <exception cref="InvalidCastException">Unable to cast: {propertyInfo.PropertyType} to {typeof(T)}</exception>
 		public static T GetPropertyValue<T>(this object source, string propertyName) where T : class
 		{
-			ThrowIfNullSource(source);
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source), "Value cannot be null");
+			}
 
 			if (string.IsNullOrEmpty(propertyName))
 			{
@@ -51,27 +54,12 @@ namespace CSharpUtils.Extensions
 				throw new ArgumentException($"Unable to find property: {propertyName} on object: {source}");
 			}
 
-			var returnValue = propertyInfo.GetValue(source) as T;
-
-			if (returnValue == null)
+			if (!(propertyInfo.GetValue(source) is T value))
 			{
 				throw new InvalidCastException($"Unable to cast: {propertyInfo.PropertyType} to {typeof(T)}");
 			}
 
-			return returnValue;
-		}
-
-		/// <summary>
-		/// Throws if null source.
-		/// </summary>
-		/// <param name="source">The source.</param>
-		/// <exception cref="ArgumentNullException">source - Value cannot be null</exception>
-		private static void ThrowIfNullSource(object source)
-		{
-			if (source == null)
-			{
-				throw new ArgumentNullException(nameof(source), "Value cannot be null");
-			}
+			return value;
 		}
 	}
 }
