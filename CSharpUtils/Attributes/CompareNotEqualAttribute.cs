@@ -16,6 +16,7 @@
  * User: Nityan Khanna
  * Date: 2019-3-17
  */
+
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,19 +29,24 @@ namespace CSharpUtils.Attributes
 	public sealed class CompareNotEqualAttribute : ValidationAttribute
 	{
 		/// <summary>
+		/// The other property name.
+		/// </summary>
+		private readonly string otherPropertyName;
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="CompareNotEqualAttribute"/> class.
 		/// </summary>
 		/// <param name="otherProperty">The other property.</param>
 		/// <exception cref="System.ArgumentNullException">Cannot compare to null</exception>
 		public CompareNotEqualAttribute(string otherProperty)
 		{
-			this.OtherProperty = otherProperty ?? throw new ArgumentNullException(nameof(otherProperty), "Value cannot be null");
-		}
+			if (string.IsNullOrEmpty(otherProperty))
+			{
+				throw new ArgumentNullException(nameof(otherProperty), "Value cannot be null");
+			}
 
-		/// <summary>
-		/// The name of the property to compare to.
-		/// </summary>
-		public string OtherProperty { get; set; }
+			this.otherPropertyName = otherProperty;
+		}
 
 		/// <summary>
 		/// Validates the specified value with respect to the current validation attribute.
@@ -50,14 +56,14 @@ namespace CSharpUtils.Attributes
 		/// <returns>An instance of the <see cref="System.ComponentModel.DataAnnotations.ValidationResult"></see> class.</returns>
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
-			var otherPropertyValue = validationContext?.ObjectType?.GetProperty(OtherProperty)?.GetValue(validationContext.ObjectInstance, null);
+			var otherPropertyValue = validationContext?.ObjectType.GetProperty(this.otherPropertyName)?.GetValue(validationContext.ObjectInstance, null);
 
-			if (string.IsNullOrEmpty(ErrorMessage))
+			if (string.IsNullOrEmpty(this.ErrorMessage))
 			{
-				ErrorMessage = "The " + validationContext?.DisplayName + " is invalid.";
+				this.ErrorMessage = $"The {validationContext?.DisplayName} is invalid";
 			}
 
-			return !otherPropertyValue.Equals(value) ? ValidationResult.Success : new ValidationResult(ErrorMessage);
+			return otherPropertyValue != value ? ValidationResult.Success : new ValidationResult(this.ErrorMessage);
 		}
 	}
 }

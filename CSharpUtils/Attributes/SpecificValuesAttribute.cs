@@ -29,18 +29,18 @@ namespace CSharpUtils.Attributes
 	public sealed class SpecificValueAttribute : ValidationAttribute
 	{
 		/// <summary>
+		/// The values to compare.
+		/// </summary>
+		private readonly object[] values;
+
+		/// <summary>
 		/// Initialzes a new instance of the SpecificValueAttribute class.
 		/// </summary>
 		/// <param name="values">The value(s) to validate against.</param>
 		public SpecificValueAttribute(params object[] values)
 		{
-			Values = values ?? throw new ArgumentNullException(nameof(values), "Value cannot be null");
+			this.values = values ?? throw new ArgumentNullException(nameof(values), "Value cannot be null");
 		}
-
-		/// <summary>
-		/// The value(s) which are valid values for the property.
-		/// </summary>
-		public object[] Values { get; }
 
 		/// <summary>
 		/// Determines whether the specified value of the object is valid.
@@ -49,7 +49,7 @@ namespace CSharpUtils.Attributes
 		/// <returns>true if the specified value is valid; otherwise, false.</returns>
 		public override bool IsValid(object value)
 		{
-			return Values.Contains(value);
+			return value != null && this.values.Contains(value);
 		}
 	}
 }
